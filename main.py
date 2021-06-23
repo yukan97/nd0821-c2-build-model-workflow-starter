@@ -6,6 +6,9 @@ import os
 import wandb
 import hydra
 from omegaconf import DictConfig
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
 
 _steps = [
     "download",
@@ -30,6 +33,7 @@ def go(config: DictConfig):
 
     # Steps to execute
     steps_par = config['main']['steps']
+
     active_steps = steps_par.split(",") if steps_par != "all" else _steps
 
     # Move to a temporary directory
@@ -44,10 +48,10 @@ def go(config: DictConfig):
                     "sample": config["etl"]["sample"],
                     "artifact_name": "sample.csv",
                     "artifact_type": "raw_data",
-                    "artifact_description": "Raw file as downloaded"
+                    "artifact_description": "Raw_file_as_downloaded"
                 },
             )
-
+        logger.info('Finished download step')
         if "basic_cleaning" in active_steps:
             ##################
             # Implement here #
