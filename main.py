@@ -99,7 +99,6 @@ def go(config: DictConfig):
             logger.info("From main.py " + rf_config)
             with open(rf_config, "w+") as fp:
                 json.dump(dict(config["modeling"]["random_forest"].items()), fp)  # DO NOT TOUCH
-                fp.read()
             # NOTE: use the rf_config we just created as the rf_config parameter for the train_random_forest
             # step
             _ = mlflow.run(
