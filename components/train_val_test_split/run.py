@@ -34,21 +34,22 @@ def go(args):
         stratify=df[args.stratify_by] if args.stratify_by != 'none' else None,
     )
 
+
     # Save to output files
+
     for df, k in zip([trainval, test], ['trainval', 'test']):
         logger.info(f"Uploading {k}_data.csv dataset")
-        with tempfile.NamedTemporaryFile("w") as fp:
+        #with tempfile.NamedTemporaryFile("w") as fp:
 
-            df.to_csv(fp.name, index=False)
+        df.to_csv(f"{k}.csv", index=False)
 
-            log_artifact(
+        log_artifact(
                 f"{k}_data.csv",
                 f"{k}_data",
                 f"{k} split of dataset",
                 fp.name,
                 run,
-            )
-
+        )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split test and remainder")
