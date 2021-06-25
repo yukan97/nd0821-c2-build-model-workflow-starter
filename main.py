@@ -95,8 +95,8 @@ def go(config: DictConfig):
         if "train_random_forest" in active_steps:
 
             # NOTE: we need to serialize the random forest configuration into JSON
-            rf_config = os.path.abspath("rf_config.json")
-            logger.info("From main.py ", rf_config)
+            rf_config = str(os.path.abspath("rf_config.json"))
+            logger.info("From main.py " + rf_config)
             with open(rf_config, "w+") as fp:
                 json.dump(dict(config["modeling"]["random_forest"].items()), fp)  # DO NOT TOUCH
 
