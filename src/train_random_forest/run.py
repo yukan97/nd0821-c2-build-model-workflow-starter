@@ -45,9 +45,8 @@ def go(args):
 
     # Get the Random Forest configuration and update W&B
     logger.info("From run.py " + args.rf_config.replace('\'', ''))
-    fp = open(args.rf_config.replace('\'', ''), 'r')
-    #with open(args.rf_config.replace('\\', '/'), 'r') as fp:
-    rf_config = json.load(fp.read())
+    with open(args.rf_config.replace('\'', ''), 'r') as fp:
+        rf_config = json.load(fp)
     run.config.update(rf_config)
 
     # Fix the random seed for the Random Forest, so we get reproducible results
