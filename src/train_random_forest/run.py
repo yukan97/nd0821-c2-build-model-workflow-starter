@@ -44,7 +44,7 @@ def go(args):
     run.config.update(args)
 
     # Get the Random Forest configuration and update W&B
-    logger.info(rf_config)
+    logger.info(args.rf_config)
     with open(r"{}".format(args.rf_config)) as fp:
         rf_config = json.load(fp)
     run.config.update(rf_config)
