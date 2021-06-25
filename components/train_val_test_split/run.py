@@ -41,15 +41,16 @@ def go(args):
         logger.info(f"Uploading {k}_data.csv dataset")
         #with tempfile.NamedTemporaryFile("w") as fp:
 
-        df.to_csv(f"{k}.csv", index=False)
+        df.to_csv(f"{k}_data.csv", index=False)
 
         log_artifact(
                 f"{k}_data.csv",
                 f"{k}_data",
                 f"{k} split of dataset",
-                fp.name,
+                f"{k}_data.csv",
                 run,
         )
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split test and remainder")
