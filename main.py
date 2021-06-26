@@ -53,9 +53,9 @@ def go(config: DictConfig):
             )
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                f"{config['main']['src']}/basic_cleaning",
-                #os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
-                #logger.info(hydra.utils.get_original_cwd()),
+                #f"{config['main']['src']}/basic_cleaning",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
+                logger.info(hydra.utils.get_original_cwd()),
                 "main",
                 parameters={
                     "input_artifact": "sample.csv:latest",
@@ -69,7 +69,8 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             _ = mlflow.run(
-                f"{config['main']['src']}/data_check",
+                #f"{config['main']['src']}/data_check",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
                 "main",
                 parameters={
                     "csv": "clean_sample.csv:latest",
@@ -102,7 +103,8 @@ def go(config: DictConfig):
             # NOTE: use the rf_config we just created as the rf_config parameter for the train_random_forest
             # step
             _ = mlflow.run(
-                f"{config['main']['src']}/train_random_forest",
+                #f"{config['main']['src']}/train_random_forest",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
                 "main",
                 parameters={
                     "trainval_artifact": "trainval_data.csv:latest",
