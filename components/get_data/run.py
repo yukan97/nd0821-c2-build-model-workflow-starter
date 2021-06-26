@@ -29,7 +29,6 @@ def go(args):
         run,
     )
     logger.info(f"Uploaded {args.artifact_name}")
-    #run.finish()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Download URL to a local destination")
